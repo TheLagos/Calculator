@@ -1,0 +1,26 @@
+# ninja log v5
+3727	7109	7758564841594670	CMakeFiles/superdupercalc.dir/src/mainwindow.cpp.obj	53df6732a2fab324
+3723	6016	7758564830707177	CMakeFiles/superdupercalc.dir/superdupercalc_autogen/mocs_compilation.cpp.obj	ce771d08843fbe0c
+27	179	7758565462754044	superdupercalc_autogen/mocs_compilation.cpp	e49b6d0714382e35
+27	179	7758565462754044	superdupercalc_autogen/timestamp	e49b6d0714382e35
+3729	6377	7758564834313033	CMakeFiles/superdupercalc.dir/src/tests/unit_tests.cpp.obj	e84f835499f9d119
+27	179	7758565462754044	D:/QProjects/Qt Widget/superdupercalc/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/superdupercalc_autogen/mocs_compilation.cpp	e49b6d0714382e35
+27	179	7758565462754044	D:/QProjects/Qt Widget/superdupercalc/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/superdupercalc_autogen/timestamp	e49b6d0714382e35
+20	655	7758565581620528	build.ninja	f8b0e3cb6f6727b1
+3725	5955	7758564830107038	CMakeFiles/superdupercalc.dir/src/main.cpp.obj	2e737bea0853eca2
+7109	7468	7758564845193677	superdupercalc.exe	7b58dc2b28c75409
+25	147	7758565563647860	superdupercalc_autogen/timestamp	e49b6d0714382e35
+25	147	7758565563647860	superdupercalc_autogen/mocs_compilation.cpp	e49b6d0714382e35
+25	147	7758565563647860	D:/QProjects/Qt Widget/superdupercalc/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/superdupercalc_autogen/timestamp	e49b6d0714382e35
+25	147	7758565563647860	D:/QProjects/Qt Widget/superdupercalc/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/superdupercalc_autogen/mocs_compilation.cpp	e49b6d0714382e35
+160	208	7758565635651378	superdupercalc_autogen/3YJK5W5UP7/qrc_icons.cpp	96f282769c4938ae
+160	208	7758565635651378	D:/QProjects/Qt Widget/superdupercalc/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/superdupercalc_autogen/3YJK5W5UP7/qrc_icons.cpp	96f282769c4938ae
+210	260	7758565636201496	CMakeFiles/superdupercalc.dir/superdupercalc_autogen/3YJK5W5UP7/qrc_icons.cpp.obj	814338e68019f695
+208	3312	7758565666678385	CMakeFiles/superdupercalc.dir/src/mainwindow.cpp.obj	53df6732a2fab324
+3312	3678	7758565670335666	superdupercalc.exe	5f62eb9f3f491c18
+25	166	7758565816586229	superdupercalc_autogen/timestamp	e49b6d0714382e35
+25	166	7758565816586229	superdupercalc_autogen/mocs_compilation.cpp	e49b6d0714382e35
+25	166	7758565816586229	D:/QProjects/Qt Widget/superdupercalc/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/superdupercalc_autogen/timestamp	e49b6d0714382e35
+25	166	7758565816586229	D:/QProjects/Qt Widget/superdupercalc/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/superdupercalc_autogen/mocs_compilation.cpp	e49b6d0714382e35
+26	3135	7758565894175332	CMakeFiles/superdupercalc.dir/src/mainwindow.cpp.obj	53df6732a2fab324
+3135	3500	7758565897829550	superdupercalc.exe	5f62eb9f3f491c18
