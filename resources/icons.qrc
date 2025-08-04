@@ -1,5 +1,7 @@
 <RCC>
     <qresource prefix="/icons">
+        <file>dark_theme_icon.png</file>
+        <file>light_theme_icon.png</file>
         <file>window_icon.png</file>
     </qresource>
 </RCC>
