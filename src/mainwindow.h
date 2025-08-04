@@ -7,6 +7,8 @@
 #include <QStack>
 #include <cmath>
 #include <QRegularExpression>
+#include <QTimer>
+#include <QSettings>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -23,6 +25,12 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    void lightTheme();
+    void darkTheme();
+    bool isLightTheme();
+    bool get_theme();
+    void set_theme(bool new_theme);
+
 protected:
     void keyPressEvent(QKeyEvent *event) override;
 
@@ -34,6 +42,7 @@ private:
 
     int o_paren_count = 0;
     bool error = false;
+    bool light_theme = true;
 
     const QSet<QString> types_for_digit = {"action", "digit", "o_paren", "coma"};
     const QSet<QString> types_for_action = {"digit", "c_paren", "factorial", "o_paren"};
@@ -56,6 +65,7 @@ private:
     int symbolPriority(QChar& symbol);
     QVector<QString> convertToIPR(QString& text);
     double calculateIPR(QVector<QString> symbols);
+    void changeTheme();
 
 private slots:
     void insertDigit(QString digit);
@@ -70,5 +80,6 @@ private slots:
     void deleteSymbol();
     void deleteAll();
     void calculateResult();
+    void changeThemeByButton();
 };
 #endif // MAINWINDOW_H

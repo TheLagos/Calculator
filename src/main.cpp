@@ -12,7 +12,14 @@ int main(int argc, char *argv[])
     CalculatorTests t;
     t.runAllTests();
 
+    QTimer timer;
+    QObject::connect(&timer, &QTimer::timeout, &w, [&]() {
+        bool current = w.isLightTheme();
+        if (current != w.get_theme()) {
+            w.set_theme(current);
+        }
+    });
+    timer.start(2000);
+
     return a.exec();
 }
-
-//додати зміну режиму, прибрати фрейм для розпишення вікна, рев'ювнути код і пописати коментарі

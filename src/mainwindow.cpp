@@ -7,9 +7,14 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     this->setWindowFlags(Qt::Window | Qt::CustomizeWindowHint | Qt::WindowTitleHint | Qt::WindowCloseButtonHint);
+    statusBar()->setSizeGripEnabled(false);
+    ui->background_plate->lower();
 
     symbols.push_back("digit"); //початкові параметри
     can_set_coma.push_back(true);
+
+    light_theme = isLightTheme();
+    changeTheme();
 
     connect(ui->zero,  &QPushButton::clicked, this, [=](){ insertDigit("0"); });
     connect(ui->one,   &QPushButton::clicked, this, [=](){ insertDigit("1"); });
@@ -40,11 +45,109 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(ui->backspace, &QPushButton::clicked, this, [=](){ deleteSymbol(); });
     connect(ui->clear,  &QPushButton::clicked, this, [=](){ deleteAll(); });
+
+    connect(ui->change_theme,  &QPushButton::clicked, this, [=](){ changeThemeByButton(); });
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::lightTheme() {
+    QString frame_style = R"(
+    #background_plate {
+        background-color: #F8F6F4;
+        border-radius: 5px;
+        border: 1px solid gray;
+    }
+    )";
+    ui->background_plate->setStyleSheet(frame_style);
+
+    QString style = R"(
+    QPushButton {
+        border-radius: 5px;
+        border: 1px solid gray;
+        padding: 5px;
+        background-color: #D2E9E9;
+    }
+    QPushButton::pressed {
+        background-color: #C4DFDF;
+    }
+    MainWindow {
+        background-color: #E3F4F4;
+    }
+    )";
+    this->setStyleSheet(style);
+
+    ui->change_theme->setIcon(QIcon(":/icons/dark_theme_icon.png"));
+}
+
+void MainWindow::darkTheme() {
+    QString frame_style = R"(
+    #background_plate {
+        background-color: #DDE6ED;
+        border-radius: 5px;
+        border: 1px solid gray;
+    }
+    )";
+    ui->background_plate->setStyleSheet(frame_style);
+
+    QString style = R"(
+    QPushButton {
+        border-radius: 5px;
+        border: 1px solid gray;
+        padding: 5px;
+        background-color: #718A99;
+    }
+    QPushButton::pressed {
+        background-color: #526D82;
+    }
+    MainWindow {
+        background-color: #9DB2BF;
+    }
+    )";
+    this->setStyleSheet(style);
+
+    ui->change_theme->setIcon(QIcon(":/icons/light_theme_icon.png"));
+}
+
+void MainWindow::changeTheme() {
+    if (light_theme) {
+        lightTheme();
+        light_theme = true;
+    } else {
+        darkTheme();
+        light_theme = false;
+    }
+}
+
+void MainWindow::changeThemeByButton() {
+    if (light_theme) {
+        darkTheme();
+        light_theme = false;
+    } else {
+        lightTheme();
+        light_theme = true;
+    }
+}
+
+bool MainWindow::isLightTheme() {
+    QSettings settings(
+        "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize",
+        QSettings::NativeFormat
+    );
+    if (settings.value("AppsUseLightTheme", 1).toInt() != 0 ) {
+        return true;
+    }
+    return false;
+}
+
+bool MainWindow::get_theme() { return light_theme; }
+
+void MainWindow::set_theme (bool new_theme) {
+    light_theme = new_theme;
+    changeTheme();
 }
 
 QString MainWindow::getText() { return ui->result_line->text(); }
@@ -446,14 +549,14 @@ double MainWindow::calculateIPR(QVector<QString> symbols) {
             value = result.pop();
             if (symbol == "!") {
                 if (value < 0) {
-                    ui->error_line->setText("Неприпустиме значення факторіалу!");
+                    ui->error_line->setText("Від'ємний факторіал!");
                     error = true;
                     return 0;
                 }
                 result.push(std::tgamma(value + 1));
             } else if (symbol == "n") {
                 if (value <= 0) {
-                    ui->error_line->setText("Неприпустиме значення логарифму!");
+                    ui->error_line->setText("Від'ємний логарифм!");
                     error = true;
                     return 0;
                 }
