@@ -28,8 +28,6 @@ public:
     void lightTheme();
     void darkTheme();
     bool isLightTheme();
-    bool get_theme();
-    void set_theme(bool new_theme);
 
 protected:
     void keyPressEvent(QKeyEvent *event) override;
@@ -65,7 +63,6 @@ private:
     int symbolPriority(QChar& symbol);
     QVector<QString> convertToIPR(QString& text);
     double calculateIPR(QVector<QString> symbols);
-    void changeTheme();
 
 private slots:
     void insertDigit(QString digit);
@@ -80,6 +77,6 @@ private slots:
     void deleteSymbol();
     void deleteAll();
     void calculateResult();
-    void changeThemeByButton();
+    void changeTheme();
 };
 #endif // MAINWINDOW_H

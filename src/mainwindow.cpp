@@ -13,8 +13,9 @@ MainWindow::MainWindow(QWidget *parent)
     symbols.push_back("digit"); //початкові параметри
     can_set_coma.push_back(true);
 
-    light_theme = isLightTheme();
-    changeTheme();
+    light_theme = isLightTheme(); //встановлення теми
+    if (light_theme) {lightTheme();}
+    else {darkTheme();}
 
     connect(ui->zero,  &QPushButton::clicked, this, [=](){ insertDigit("0"); });
     connect(ui->one,   &QPushButton::clicked, this, [=](){ insertDigit("1"); });
@@ -46,7 +47,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->backspace, &QPushButton::clicked, this, [=](){ deleteSymbol(); });
     connect(ui->clear,  &QPushButton::clicked, this, [=](){ deleteAll(); });
 
-    connect(ui->change_theme,  &QPushButton::clicked, this, [=](){ changeThemeByButton(); });
+    connect(ui->change_theme,  &QPushButton::clicked, this, [=](){ changeTheme(); });
 }
 
 MainWindow::~MainWindow()
@@ -70,16 +71,23 @@ void MainWindow::lightTheme() {
         border: 1px solid gray;
         padding: 5px;
         background-color: #D2E9E9;
+        color: black;
     }
     QPushButton::pressed {
         background-color: #C4DFDF;
+        color: black;
     }
     MainWindow {
         background-color: #E3F4F4;
+        color: black;
+    }
+    QLabel {
+        color: black;
     }
     )";
     this->setStyleSheet(style);
 
+    this->setFont({"Consolas", 10});
     ui->change_theme->setIcon(QIcon(":/icons/dark_theme_icon.png"));
 }
 
@@ -99,30 +107,27 @@ void MainWindow::darkTheme() {
         border: 1px solid gray;
         padding: 5px;
         background-color: #718A99;
+        color: black;
     }
     QPushButton::pressed {
         background-color: #526D82;
+        color: black;
     }
     MainWindow {
         background-color: #9DB2BF;
+        color: black;
+    }
+    QLabel {
+        color: black;
     }
     )";
     this->setStyleSheet(style);
 
+    this->setFont({"Consolas", 10});
     ui->change_theme->setIcon(QIcon(":/icons/light_theme_icon.png"));
 }
 
 void MainWindow::changeTheme() {
-    if (light_theme) {
-        lightTheme();
-        light_theme = true;
-    } else {
-        darkTheme();
-        light_theme = false;
-    }
-}
-
-void MainWindow::changeThemeByButton() {
     if (light_theme) {
         darkTheme();
         light_theme = false;
@@ -141,13 +146,6 @@ bool MainWindow::isLightTheme() {
         return true;
     }
     return false;
-}
-
-bool MainWindow::get_theme() { return light_theme; }
-
-void MainWindow::set_theme (bool new_theme) {
-    light_theme = new_theme;
-    changeTheme();
 }
 
 QString MainWindow::getText() { return ui->result_line->text(); }
@@ -539,7 +537,7 @@ double MainWindow::calculateIPR(QVector<QString> symbols) {
             else if (symbol == "*") { result.push(a * b); }
             else if (symbol == "/") {
                 if (b == 0) {
-                    ui->error_line->setText("На нуль ділити не можна!");
+                    ui->error_line->setText("Ділення на нуль!");
                     error = true;
                     return 0;
                 }
